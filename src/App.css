@@ -27,6 +27,13 @@
 .App-link {
   color: #61dafb;
 }
+.g-signin {
+  position: absolute;
+  top: 60px;
+  right: 4px;
+  margin-top: -50px;
+  margin-left: -50px;
+}
 
 @keyframes App-logo-spin {
   from {
