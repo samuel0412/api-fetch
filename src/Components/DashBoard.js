@@ -5,7 +5,8 @@ import Api from "../services";
 import { Box } from "@mui/system";
 const DashBoard = () => {
   const [loader, setLoader] = useState(true);
-  const [getTodo, setGetTodo] = useState(null);
+  const [getTodo, setGetTodo] = useState([]);
+  console.log(getTodo);
   const [error, setError] = useState(null);
 
   const todoList = async () => {
@@ -14,7 +15,7 @@ const DashBoard = () => {
         `https://jsonplaceholder.typicode.com/posts`
       );
       if (response) {
-        console.log(response.data);
+        setGetTodo(response.data);
         setLoader(false);
       } else {
         console.log("error in while getting data");
@@ -26,6 +27,7 @@ const DashBoard = () => {
   useEffect(() => {
     todoList();
   }, []);
+
   if (loader) {
     return (
       <>
@@ -40,7 +42,16 @@ const DashBoard = () => {
   return (
     <div>
       <MenuBar />
-      <div className="" style={{ marginTop: 90 }}></div>
+      <div className="" style={{ marginTop: 90 }}>
+        {getTodo.map((item, i) => {
+          return (
+            <>
+              <span>{item.id}</span>
+              <span>{item.title}</span>
+            </>
+          );
+        })}
+      </div>
     </div>
   );
 };
